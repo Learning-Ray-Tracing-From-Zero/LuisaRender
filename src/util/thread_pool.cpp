@@ -119,8 +119,8 @@ ThreadPool::ThreadPool(size_t num_threads) noexcept
                   std::thread::hardware_concurrency(), 1u);
           }
           return num_threads;
-      }())} {
-}
+      }())},
+      _task_count{0u} {}
 
 void ThreadPool::barrier() noexcept {
     detail::check_not_in_worker_thread("barrier");
@@ -181,4 +181,4 @@ ThreadPool &global_thread_pool() noexcept {
     return pool;
 }
 
-}// namespace luisa
+}// namespace luisa::render
